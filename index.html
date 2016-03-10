@@ -1,0 +1,29 @@
+<?doctype html>
+<html>
+	<head>
+		<title>Reflist</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script type="text/javascript" src="vue.js"></script>
+		<script type="text/javascript" src="https://api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
+		<script type="text/javascript" src="app.js"></script>
+	</head>
+	<body id="app">
+	 	<div id="map" style="width: 900px; height: 600px"></div>
+		{{ message }}
+
+		<table class='reflist'>
+			<thead>
+				<th>Система</th>
+				<th>Дата</th>
+				<th>Информация</th>
+			</thead>
+			<tbody>
+				<tr v-for="obj in reflist">
+					<td>{{ obj.system }}</td>
+					<td>{{ obj.deployed_on }}</td>
+					<td>{{ obj.description }} ({{ obj.arrows | plural 'стрелка' 'стрелки' 'стрелок' }})</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>
