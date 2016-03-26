@@ -8,7 +8,9 @@
 		
 		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
 		<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+		<script src="pruneCluster.js"></script>
 		
+		<script type="text/javascript" src="stations.js"></script>
 		<script type="text/javascript" src="reflist.js"></script>
 	</head>
 	<body id="app">
@@ -16,24 +18,24 @@
 		
 	 	<div id="selector">
 	 		<ul>
-	 			<li v-for="system in systems">
+	 			<li v-for="(systemTitle, system) in systems">
 	 				<input v-model='system.enabled' type='checkbox'> 
-	 				<img src="{{ system.icon }}"> 
-	 				{{ system.name }}
+	 				<img src="{{ systemTitle | icon }}"> 
+	 				{{ systemTitle }}
 	 			</li>
 	 		</ul>
 	 	</div>
 
 		<table class='reflist'>
 			<thead>
-				<th>Система</th>
+				<th>Системы</th>
 				<th>Дата</th>
 				<th>Информация</th>
 				<th>Внедрена</th>
 			</thead>
 			<tbody>
 				<tr v-for="obj in selected">
-					<td>{{ obj.system }}</td>
+					<td>{{ obj.systems | join }}</td>
 					<td>{{ obj.deployed_on }}</td>
 					<td>{{ obj.title }} ({{ obj.arrows | plural 'стрелка' 'стрелки' 'стрелок' }})</td>
 					<td>{{ obj.deployed_by }}</td>
